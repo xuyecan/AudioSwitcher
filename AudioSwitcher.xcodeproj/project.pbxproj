@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		94E8EB852C4819D60028F53D /* AudioSwitcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8EB842C4819D60028F53D /* AudioSwitcherApp.swift */; };
-		94E8EB872C4819D60028F53D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8EB862C4819D60028F53D /* ContentView.swift */; };
+		94E8EB852C4819D60028F53D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8EB842C4819D60028F53D /* AppDelegate.swift */; };
 		94E8EB892C4819D70028F53D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94E8EB882C4819D70028F53D /* Assets.xcassets */; };
 		94E8EB8C2C4819D70028F53D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94E8EB8B2C4819D70028F53D /* Preview Assets.xcassets */; };
+		94E8EB942C481A130028F53D /* AudioDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8EB932C481A130028F53D /* AudioDeviceManager.swift */; };
+		94E8EB962C481A2C0028F53D /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8EB952C481A2C0028F53D /* MenuBarView.swift */; };
+		94E8EB982C4820F30028F53D /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8EB972C4820F30028F53D /* PopoverView.swift */; };
+		94E8EB9A2C4821360028F53D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E8EB992C4821360028F53D /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		94E8EB812C4819D60028F53D /* AudioSwitcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioSwitcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		94E8EB842C4819D60028F53D /* AudioSwitcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSwitcherApp.swift; sourceTree = "<group>"; };
-		94E8EB862C4819D60028F53D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		94E8EB842C4819D60028F53D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94E8EB882C4819D70028F53D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94E8EB8B2C4819D70028F53D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		94E8EB8D2C4819D70028F53D /* AudioSwitcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioSwitcher.entitlements; sourceTree = "<group>"; };
+		94E8EB932C481A130028F53D /* AudioDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceManager.swift; sourceTree = "<group>"; };
+		94E8EB952C481A2C0028F53D /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		94E8EB972C4820F30028F53D /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		94E8EB992C4821360028F53D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +58,11 @@
 		94E8EB832C4819D60028F53D /* AudioSwitcher */ = {
 			isa = PBXGroup;
 			children = (
-				94E8EB842C4819D60028F53D /* AudioSwitcherApp.swift */,
-				94E8EB862C4819D60028F53D /* ContentView.swift */,
+				94E8EB952C481A2C0028F53D /* MenuBarView.swift */,
+				94E8EB972C4820F30028F53D /* PopoverView.swift */,
+				94E8EB932C481A130028F53D /* AudioDeviceManager.swift */,
+				94E8EB842C4819D60028F53D /* AppDelegate.swift */,
+				94E8EB992C4821360028F53D /* main.swift */,
 				94E8EB882C4819D70028F53D /* Assets.xcassets */,
 				94E8EB8D2C4819D70028F53D /* AudioSwitcher.entitlements */,
 				94E8EB8A2C4819D70028F53D /* Preview Content */,
@@ -139,8 +148,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94E8EB872C4819D60028F53D /* ContentView.swift in Sources */,
-				94E8EB852C4819D60028F53D /* AudioSwitcherApp.swift in Sources */,
+				94E8EB962C481A2C0028F53D /* MenuBarView.swift in Sources */,
+				94E8EB9A2C4821360028F53D /* main.swift in Sources */,
+				94E8EB852C4819D60028F53D /* AppDelegate.swift in Sources */,
+				94E8EB982C4820F30028F53D /* PopoverView.swift in Sources */,
+				94E8EB942C481A130028F53D /* AudioDeviceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
