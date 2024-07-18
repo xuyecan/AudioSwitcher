@@ -16,48 +16,39 @@ jobs:
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '15.4.0'
+          xcode-version: '15.4'
 
       - name: Install dependencies
         run: |
-          sudo xcode-select -s /Applications/Xcode_15.4.0.app/Contents/Developer
+          sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
           sudo xcodebuild -license accept
 
+      - name: Decode and install certificate
+        run: |
+          echo "${{ secrets.MACOS_CERTIFICATE }}" | base64 --decode > cert.p12
+          security create-keychain -p "" build.keychain
+          security import cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.MACOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign
+          security list-keychains -s ~/Library/Keychains/build.keychain
+          security default-keychain -s ~/Library/Keychains/build.keychain
+          security unlock-keychain -p "" ~/Library/Keychains/build.keychain
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain
+
       - name: Build project
-        run: xcodebuild -project AudioSwitcher.xcodeproj -scheme AudioSwitcher -configuration Release build
+        run: xcodebuild -project AudioSwitcher.xcodeproj -scheme AudioSwitcher -configuration Release build CODE_SIGN_IDENTITY="Apple Development"
 
       - name: Create DMG
         run: |
           mkdir -p build/Release
           hdiutil create -volname AudioSwitcher -srcfolder build/Release -ov -format UDZO build/Release/AudioSwitcher.dmg
 
-      - name: Upload release asset
-        uses: actions/upload-release-asset@v1
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/Release/AudioSwitcher.dmg
-          asset_name: AudioSwitcher.dmg
-          asset_content_type: application/x-apple-diskimage
-
-  release:
-    needs: build
-    runs-on: macos-latest
-    steps:
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: v${{ github.ref }}
+          name: Release v${{ github.ref }}
+          files: build/Release/AudioSwitcher.dmg
           draft: false
           prerelease: false
-
-      - name: Upload DMG to Release
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/Release/AudioSwitcher.dmg
-          asset_name: AudioSwitcher.dmg
-          asset_content_type: application/x-apple-diskimage
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.AUDIOSWITCHER_PAT }}
