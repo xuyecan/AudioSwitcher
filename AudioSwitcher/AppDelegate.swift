@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var address = AudioObjectPropertyAddress(
             mSelector: kAudioDevicePropertyVolumeScalar,
             mScope: kAudioDevicePropertyScopeOutput,
-            mElement: kAudioObjectPropertyElementMaster
+            mElement: kAudioObjectPropertyElementMain
         )
 
         volumeObserver = AudioObjectAddPropertyListenerBlock(defaultOutputDeviceID, &address, nil) { (_, _) in
@@ -54,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             var address = AudioObjectPropertyAddress(
                 mSelector: kAudioDevicePropertyVolumeScalar,
                 mScope: kAudioDevicePropertyScopeOutput,
-                mElement: kAudioObjectPropertyElementMaster
+                mElement: kAudioObjectPropertyElementMain
             )
             AudioObjectRemovePropertyListenerBlock(AudioDeviceID(0), &address, DispatchQueue.main, observer)
         }

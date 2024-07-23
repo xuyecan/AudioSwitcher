@@ -36,7 +36,7 @@ class AudioDeviceManager: ObservableObject {
         var address = AudioObjectPropertyAddress(
             mSelector: kAudioHardwarePropertyDefaultOutputDevice,
             mScope: kAudioObjectPropertyScopeGlobal,
-            mElement: kAudioObjectPropertyElementMaster
+            mElement: kAudioObjectPropertyElementMain
         )
 
         let selfPtr = Unmanaged.passUnretained(self).toOpaque()
@@ -175,7 +175,7 @@ class AudioDeviceManager: ObservableObject {
     }
 
     func switchAudioDevice(to deviceID: AudioDeviceID, isOutput: Bool) {
-        var propertySize = UInt32(MemoryLayout<AudioDeviceID>.size)
+        let propertySize = UInt32(MemoryLayout<AudioDeviceID>.size)
         let selector = isOutput ? kAudioHardwarePropertyDefaultOutputDevice : kAudioHardwarePropertyDefaultInputDevice
 
         var address = AudioObjectPropertyAddress(
@@ -210,11 +210,11 @@ class AudioDeviceManager: ObservableObject {
         var address = AudioObjectPropertyAddress(
             mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
             mScope: kAudioDevicePropertyScopeOutput,
-            mElement: kAudioObjectPropertyElementMaster
+            mElement: kAudioObjectPropertyElementMain
         )
 
         var newVolumeValue = max(0.0, min(1.0, newVolume)) // Ensure volume is between 0 and 1
-        var size = UInt32(MemoryLayout<Float32>.size)
+        let size = UInt32(MemoryLayout<Float32>.size)
 
         let status = AudioObjectSetPropertyData(
             defaultOutputDeviceID,
@@ -242,7 +242,7 @@ class AudioDeviceManager: ObservableObject {
         var address = AudioObjectPropertyAddress(
             mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
             mScope: kAudioDevicePropertyScopeOutput,
-            mElement: kAudioObjectPropertyElementMaster
+            mElement: kAudioObjectPropertyElementMain
         )
 
         var volume: Float32 = 0.0
